@@ -5,6 +5,8 @@ services:
     ports:
       - "3389:8069"
     tty: true
+    external_links:
+      - postgresql:db
     command: -- --dev=reload
 #    command: odoo scaffold /mnt/extra-addons/test_module
     volumes:
