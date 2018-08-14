@@ -1,12 +1,18 @@
 version: '2'
 services:
+  db:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+
   odoo11:
     image: odoo:11.0
+    depends_on:
+      - db
     ports:
       - "3389:8069"
     tty: true
-    external_links:
-      - postgresql:db
     command: -- --dev=reload
 #    command: odoo scaffold /mnt/extra-addons/test_module
     volumes:
